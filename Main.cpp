@@ -1,7 +1,6 @@
 #include <iostream>
 #include <thread>
 #include <chrono>
-#include "Strategy.h"
 #include "Matrix.h"
 #include "Algorithm_Strassen.h"
 #include "Simple_Timer.h"
