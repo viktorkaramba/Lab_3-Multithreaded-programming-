@@ -140,12 +140,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Algorithm_Strassen.cpp" />
+    <ClCompile Include="Algorithm_Strassen_Multithreded.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="Simple_Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Algorithm_Strassen.h" />
+    <ClInclude Include="Algorithm_Strassen_Multithreded.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="Simple_Timer.h" />
   </ItemGroup>
