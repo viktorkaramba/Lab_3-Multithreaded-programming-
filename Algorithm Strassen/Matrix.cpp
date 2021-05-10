@@ -3,7 +3,7 @@
 #include "Matrix.h"
 
 
-template<typename T1> istream& operator>> (istream& in, Matrix<T1>& A)
+template<typename T1> std::istream& operator>> (std::istream& in, Matrix<T1>& A)
 {
 
 	for (int i = 0; i < A.GetCount_Of_Rows(); i++) {
@@ -20,12 +20,12 @@ template<typename T1> istream& operator>> (istream& in, Matrix<T1>& A)
 
 
 template<typename T>
-Matrix<T>::Matrix(const int& cofr, const int& cofc)
+Matrix<T>::Matrix(int cofr, int cofc)
 {
 
 	this->count_of_rows = cofr;
 	this->count_of_columns = cofc;
-	vector < vector <T> > a(count_of_rows, vector <T>(count_of_columns));
+	std::vector < std::vector <T> > a(count_of_rows, std::vector <T>(count_of_columns));
 	this->data = a;
 }
 
@@ -42,8 +42,26 @@ int Matrix<T>::GetCount_Of_Columns()
 	return this->count_of_columns;
 }
 
+template<typename T>
+void Matrix<T>::SetCount_Of_Rows(int row)
+{
+	this->count_of_row = row;
+}
 
+template<typename T>
+void Matrix<T>::SetCount_Of_Columns(int column)
+{
+	this->count_of_columns = column;
+}
 
+template<typename T>
+void Matrix<T>::SetCount_Of_Row_Columns(int row, int column)
+{
+	this->count_of_rows = row;
+	this->count_of_columns = column;
+	std::vector <std::vector <T> > a(count_of_rows, std::vector <T>(count_of_columns));
+	this->data = a;
+}
 
 
 template<typename T>
@@ -58,7 +76,7 @@ void Matrix<T>::Print()
 }
 
 template<typename T>
-void Matrix<T>::SetElement(const T& d, const int& row, const int& column)
+void Matrix<T>::SetElement(const T& d, int row, int column)
 {
 	this->data[row][column] = d;
 }
@@ -76,7 +94,7 @@ Matrix<T>::Matrix()
 
 	this->count_of_rows = 0;
 	this->count_of_columns = 0;
-
+	
 }
 
 
@@ -88,6 +106,8 @@ void Matrix<T>::SetData(std::vector<std::vector<T>> data_)
 {
 	this->data = data_;
 }
+
+
 #endif
 
 

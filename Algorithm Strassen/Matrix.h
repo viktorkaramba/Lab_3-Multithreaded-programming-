@@ -4,7 +4,6 @@
 #include <vector>
 #include <iostream>
 
-using namespace std;
 
 template<typename T>
 class Matrix
@@ -13,18 +12,19 @@ private:
 	int count_of_rows;
 	int count_of_columns;
 	std::vector<std::vector<T>> data;
-	template<typename T1> friend istream& operator>> (istream& in, Matrix<T1>& A);
+	template<typename T1> friend std::istream& operator>> (std::istream& in, Matrix<T1>& A);
 public:
 	Matrix<T>();
-	Matrix<T>(const int& cofr, const int& cofc);
+	Matrix<T>(int cofr, int cofc);
 	std::vector<std::vector<T>> GetData();
 	int GetCount_Of_Rows();
 	int GetCount_Of_Columns();
+	void SetCount_Of_Rows(int row);
+	void SetCount_Of_Columns(int column);
+	void SetCount_Of_Row_Columns(int row ,int column);
 	void SetData(std::vector<std::vector<T>> data_);
 	void Print();
-	void SetElement(const T& d, const int& row,const int& column);
-
-	
+	void SetElement(const T& d, int row,int column);
 };
 
 
