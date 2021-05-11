@@ -22,27 +22,22 @@ public:
 	
 	void sum(Matrix<T>& A, Matrix<T>& B, Matrix<T>& C, int n) override;
 	void subtract(Matrix<T>& A, Matrix<T>& B, Matrix<T>& C, int n) override;
-	static void invoke_strassenR(Multithreaded_Version<T>* algorithm_strassena, Matrix<T>& A, Matrix<T>& B, Matrix<T>& C, int n);
-
-	//void Create_Additional_Matrix(Matrix<T>& A, Matrix<T>& B, Matrix<T>& C, int n);
-	/*void First_Thread_Sum(Matrix<T>& aResult, Matrix<T>& bResult, Matrix<T>& p1, int n);
-	void Second_Thread_Sum(Matrix<T>& aResult, Matrix<T>& bResult, Matrix<T>& p2, int n);
-	void Third_Thread_Sum(Matrix<T>& aResult, Matrix<T>& bResult, Matrix<T>& p3, int n);
-	void Fourth_Thread_Sum(Matrix<T>& aResult, Matrix<T>& bResult, Matrix<T>& p4, int n);
-	void Fifth_Thread_Sum(Matrix<T>& aResult, Matrix<T>& bResult, Matrix<T>& p5, int n);
-	void Sixth_Thread_Sum(Matrix<T>& aResult, Matrix<T>& bResult, Matrix<T>& p6, int n);
-	void Seventh_Thread_Sum(Matrix<T>& aResult, Matrix<T>& bResult, Matrix<T>& p7, int n);
-	void strassenR_Multithreded(Matrix<T>& A, Matrix<T>& B, Matrix<T>& C, int n);
-	void first_additional_sum(Matrix<T>& aResult, Matrix<T>& bResult, Matrix<T>& p1, int n);
-	void second_additional_sum(Matrix<T>& aResult, Matrix<T>& bResult, Matrix<T>& p2, int n);
-	void third_additional_sum(Matrix<T>& aResult, Matrix<T>& bResult, Matrix<T>& p3, int n);
-	void fourth_additional_sum(Matrix<T>& aResult, Matrix<T>& bResult, Matrix<T>& p4, int n);
-	void fifth_additional_sum(Matrix<T>& aResult, Matrix<T>& bResult, Matrix<T>& p5, int n);
-	void sixth_additional_sum(Matrix<T>& aResult, Matrix<T>& bResult, Matrix<T>& p6, int n);
-	void seventh_additional_sum(Matrix<T>& aResult, Matrix<T>& bResult, Matrix<T>& p7, int n);*/
+	
 };
 
+class Multithreaded_VersionException
+{
+private:
+	std::string m_error;
 
+public:
+	Multithreaded_VersionException(std::string error)
+		: m_error(error)
+	{
+	}
+
+	const char* getError() { return m_error.c_str(); }
+};
 
 
 #include "Multithreaded_Version.cpp"

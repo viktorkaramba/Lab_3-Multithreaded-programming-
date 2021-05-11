@@ -22,10 +22,16 @@ template<typename T1> std::istream& operator>> (std::istream& in, Matrix<T1>& A)
 template<typename T>
 Matrix<T>::Matrix(int cofr, int cofc)
 {
-
+	
+	if (cofr == 0) {
+		throw MatrixException("The number of rows must be greater than 0");
+	}
+	if (cofc == 0) {
+		throw MatrixException("The number of columns must be greater than 0");
+	}
 	this->count_of_rows = cofr;
 	this->count_of_columns = cofc;
-	std::vector < std::vector <T> > a(count_of_rows, std::vector <T>(count_of_columns));
+	std::vector<std::vector<T>> a(count_of_rows, std::vector <T>(count_of_columns));
 	this->data = a;
 }
 

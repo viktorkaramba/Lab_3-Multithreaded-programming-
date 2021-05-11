@@ -1,43 +1,93 @@
+#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
+#include "doctest.h"
 #include <iostream>
-#include "Algorithm_Strassen.h"
-#include "Serial_Version.h"
-#include "Multithreaded_Version.h"
-#include "Simple_Timer.h"
-#include <cstdlib>
-#include <time.h>
-
+#include "Tests.h"
 using namespace std;
 
 
+TEST_CASE("Test matrix exeption") {
+    try
+    {
+       
+    }
+    catch (MatrixException& exception)
+    {
+        std::cerr << "An array exception occurred (" << exception.getError() << ")\n";
+    }
+    CHECK_THROWS(Matrix<int> A1(0, 3) , exception);
+    CHECK_THROWS(Matrix<int> A2(3, 0) , exception);
+    CHECK_THROWS(Matrix<int> A3(0, 0) , exception);
+}
 
-int main()
-{
-	
-	srand (time(NULL));
-	std::vector<std::vector<int>> A1;
-	int row = rand() % 1 + 15;
-	Matrix<int> A(row, row);
-	Matrix<int> B(row, row);
-	Matrix<int> C(row, row);
-	int data;
-	for (int i = 0; i < row; i++) {
-		std::vector<int> A2;
-		for (int j = 0; j < row; j++) {
-			data = rand() % 50;
-			A2.push_back(data);
-		}
-		A1.push_back(A2);
-		A2.clear();
-	}
+TEST_CASE("Test Strassen's multithreaded algorithm exeption") {
+    Matrix<int> A(3, 3);
+    Matrix<int> B(2, 3);
+    Matrix<int> Ñ(3, 3);
+    try
+    {
 
-	A.SetData(A1);
-	B.SetData(A1);
-	
-	//cin >> A;
-	//cin >> B;
-	Simple_Timer p;
-	Algorithm_Strassen<int>* sum = new Multithreaded_Version<int>(A, B, C, row);
-	C.Print();
+    }
+    catch (Multithreaded_VersionException& exception)
+    {
+        std::cerr << "An array exception occurred (" << exception.getError() << ")\n";
+    }
+ 
+    CHECK_THROWS(Algorithm_Strassen<int> * product = new Multithreaded_Version<int>(A, B, Ñ, 3), exception);
+  
+}
+TEST_CASE("Test Strassen's serial algorithm exeption") {
+    Matrix<int> A(3, 3);
+    Matrix<int> B(2, 3);
+    Matrix<int> Ñ(3, 3);
+    try
+    {
+
+    }
+    catch (Serial_VersionException& exception)
+    {
+        std::cerr << "An array exception occurred (" << exception.getError() << ")\n";
+    }
+
+    CHECK_THROWS(Algorithm_Strassen<int> * product = new Serial_Version<int>(A, B, Ñ, 3), exception);
 
 }
 
+
+TEST_CASE("Test of constructor of matrix") {
+    std::vector<Matrix<int>> vecMatrix_A = Tests_Matrix();
+    for (size_t i = 0; i < 8; i++)
+    {
+        CHECK(vecMatrix_A[i].GetData() == Additional[i]);
+    }
+}  
+
+
+TEST_CASE("Test serial version of the algorithm") {
+    std::vector<Matrix<int>> vecMatrix_A = Tests_Matrix();
+    std::vector<Matrix<int>> vecMatrix_B = Tests_Matrix();
+    std::vector<Matrix<int>> vecMatrix_C;
+    for (size_t i = 0; i < count_row.size(); i++)
+    {
+        vecMatrix_C.push_back(The_Product_Of_Matrices_Serial(vecMatrix_A[i], vecMatrix_B[i], count_row[i]));
+    }
+
+    for (size_t i = 0; i < count_row.size(); i++)
+    {
+        CHECK(vecMatrix_C[i].GetData() == Product1[i].GetData());
+    }
+}
+
+TEST_CASE("Test of multi-threaded version of the algorithm") {
+    std::vector<Matrix<int>> vecMatrix_A = Tests_Matrix();
+    std::vector<Matrix<int>> vecMatrix_B = Tests_Matrix();
+    std::vector<Matrix<int>> vecMatrix_C;
+    for (size_t i = 0; i < count_row.size(); i++)
+    {
+        vecMatrix_C.push_back(The_Product_Of_Matrices_Multithreaded_Version(vecMatrix_A[i], vecMatrix_B[i], count_row[i]));
+    }
+
+    for (size_t i = 0; i < count_row.size(); i++)
+    {
+        CHECK(vecMatrix_C[i].GetData() == Product2[i].GetData());
+    }
+}

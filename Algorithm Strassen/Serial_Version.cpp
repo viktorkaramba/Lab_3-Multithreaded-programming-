@@ -77,6 +77,11 @@ void Serial_Version<T>::strassenR(Matrix<T>& A, Matrix<T>& B, Matrix<T>& C, int 
 template<typename T>
 Serial_Version<T>::Serial_Version(Matrix<T>& A, Matrix<T>& B, Matrix<T>& C, int n)
 {
+  
+    if (A.GetCount_Of_Rows() != B.GetCount_Of_Rows()) {
+        throw Serial_VersionException("The number of rows of the first matrix must be equal to the number of rows of the second matrix");
+    }
+
     int m = pow(2, int(ceil(log2(n))));
     Matrix<T> APrep(m, m), BPrep(m, m), CPrep(m, m);
     for (int i = 0; i < n; i++) {
@@ -91,6 +96,11 @@ Serial_Version<T>::Serial_Version(Matrix<T>& A, Matrix<T>& B, Matrix<T>& C, int 
             C.SetElement(CPrep.GetData()[i][j], i, j);
         }
     }
+}
+
+template<typename T>
+Serial_Version<T>::Serial_Version()
+{
 }
 
 template<typename T>

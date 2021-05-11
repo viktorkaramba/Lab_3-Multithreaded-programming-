@@ -5,12 +5,16 @@ Simple_Timer::Simple_Timer()
 	start = std::chrono::high_resolution_clock::now();
 }
 
+float Simple_Timer::GetResult()
+{
+	return this->result;
+}
+
 Simple_Timer::~Simple_Timer()
 {
 	end = std::chrono::high_resolution_clock::now();
 	duration = end - start;
-	float result = duration.count();
-	std::cout << std::endl;
-	std::cout << result << std::endl;
+	result = duration.count();
+
 }
 
