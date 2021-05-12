@@ -2,10 +2,12 @@
 #include "Tests.h"
 #include "Simple_Timer.h"
 #include <fstream>
+
 using namespace std;
 std::vector<float> p1;
 std::vector<float> p2;
 
+/*!Function for writing a table to a file*/
 void Table(){
 	string path = "Table.txt";
 	fstream fs;

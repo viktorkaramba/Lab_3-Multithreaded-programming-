@@ -8,11 +8,16 @@
 #include <time.h>
 #include <string.h>
 
+/*!Vector for storing matrix dimension values*/
 const std::vector<int> count_row = {3,5,10,15,20,30,40,50};
+/*!Vector for storing additional matrix for compare*/
 std::vector<std::vector<int>> Additional[8];
+/*!Matrix for storing the product of the matrix by a sequential algorithm*/
 std::vector<Matrix<int>> Product1;
+/*!Matrix for storing the product of the matrix by a multi-threaded algorithm*/
 std::vector<Matrix<int>> Product2;
 
+/*!Function for generating matrices of different dimensions*/
 std::vector<std::vector<int>> createMatrix(int rows) {
     srand(time(NULL));
     int row1 = rows;
@@ -31,7 +36,7 @@ std::vector<std::vector<int>> createMatrix(int rows) {
     return A1;
 }
 
-
+/*!Function for creationg vector of matrices*/
 std::vector<Matrix<int>> Tests_Matrix() {
     std::vector<Matrix<int>> vecMatrix;
     Matrix<int> *M1 = new Matrix<int>[8];
@@ -46,6 +51,7 @@ std::vector<Matrix<int>> Tests_Matrix() {
     return vecMatrix;
 }
 
+/*!Function for finding the product of matrices by serial version*/
 Matrix<int> The_Product_Of_Matrices_Serial(Matrix<int>  A, Matrix<int> B,  int row) {
     Matrix<int> C(row,row);
     Algorithm_Strassen<int>* product = new Serial_Version<int>(A,B,C,row);
@@ -53,6 +59,7 @@ Matrix<int> The_Product_Of_Matrices_Serial(Matrix<int>  A, Matrix<int> B,  int r
     return C;
 }
 
+/*!Function for finding the product of matrices by multithreaded version*/
 Matrix<int> The_Product_Of_Matrices_Multithreaded_Version(Matrix<int>  A, Matrix<int> B,  int row) {
     Matrix<int> C(row,row);
     Algorithm_Strassen<int>* product = new Multithreaded_Version<int>(A,B,C,row);

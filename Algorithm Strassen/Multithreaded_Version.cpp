@@ -176,6 +176,11 @@ Multithreaded_Version<T>::Multithreaded_Version(Matrix<T>& A, Matrix<T>& B, Matr
     }
 }
 
+template<typename T>
+Multithreaded_Version<T>::Multithreaded_Version()
+{
+}
+
 
 template<typename T>
 void Multithreaded_Version<T>::sum(Matrix<T>& A, Matrix<T>& B, Matrix<T>& C, int n) {
