@@ -1,6 +1,10 @@
 #pragma once
 #include <chrono>
 #include <iostream>
+/*!
+ * \brief Simple timer
+ * Using for calculating the execution time of the algorithm
+ */
 
 /*!Class for calculating the execution time of the algorithm*/
 class Simple_Timer
@@ -10,6 +14,7 @@ public:
 	Simple_Timer();
 	/*!Method that returns the execution time of an algorithm*/
 	float GetResult();
+	void GetTime();
 	/*!A destructor that stops the timer and records the result*/
 	~Simple_Timer();
 private:

@@ -4,6 +4,11 @@
 #include <vector>
 #include <iostream>
 
+/*!
+ * \brief
+ * Realisation of matrix
+ */
+
 /*!Template class for matrix representation*/
 template<typename T>
 class Matrix
@@ -41,6 +46,11 @@ public:
 	/*!Method for inserting a single element into a matrix*/
 	void SetElement(const T& d, int row,int column);
 };
+
+/*!
+ * \brief
+ * Realisation of matrix exeptions
+ */
 
 /*!Class to find exceptions*/
 class MatrixException

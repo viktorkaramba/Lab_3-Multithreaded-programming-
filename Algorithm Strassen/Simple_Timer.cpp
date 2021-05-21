@@ -10,11 +10,14 @@ float Simple_Timer::GetResult()
 	return this->result;
 }
 
-Simple_Timer::~Simple_Timer()
-{
+void Simple_Timer::GetTime() {
 	end = std::chrono::high_resolution_clock::now();
 	duration = end - start;
 	result = duration.count();
+}
 
+Simple_Timer::~Simple_Timer()
+{
+	
 }
 

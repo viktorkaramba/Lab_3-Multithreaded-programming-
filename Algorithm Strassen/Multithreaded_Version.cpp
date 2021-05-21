@@ -154,30 +154,30 @@ void Multithreaded_Version<T>::strassenR(Matrix<T> &A, Matrix<T> &B, Matrix<T> &
 
 
 template<typename T>
-Multithreaded_Version<T>::Multithreaded_Version(Matrix<T>& A, Matrix<T>& B, Matrix<T>& C, int n)
+Multithreaded_Version<T>::Multithreaded_Version(Matrix<T>& A, Matrix<T>& B, Matrix<T>& C) 
 {
     if (A.GetCount_Of_Rows() != B.GetCount_Of_Rows()) {
-        throw Multithreaded_VersionException("The number of rows of the first matrix must be equal to the number of rows of the second matrix");
+        throw Algorithm_StrassenException("The number of rows of the first matrix must be equal to the number of rows of the second matrix");
     }
     this->first_ = 0;
-    int m = pow(2, int(ceil(log2(n))));
+    int m = pow(2, int(ceil(log2(A.GetCount_Of_Rows()))));
     Matrix<T> APrep(m, m), BPrep(m, m), CPrep(m, m);
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
+    for (size_t i = 0; i < A.GetCount_Of_Rows(); i++) {
+        for (size_t j = 0; j < A.GetCount_Of_Columns(); j++) {
             APrep.SetElement(A.GetData()[i][j], i, j);
             BPrep.SetElement(B.GetData()[i][j], i, j);
         }
     }
     strassenR(APrep, BPrep, CPrep, m);
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
+    for (size_t i = 0; i < A.GetCount_Of_Rows(); i++) {
+        for (size_t j = 0; j < A.GetCount_Of_Columns(); j++) {
             C.SetElement(CPrep.GetData()[i][j], i, j);
         }
     }
 }
 
 template<typename T>
-Multithreaded_Version<T>::Multithreaded_Version()
+Multithreaded_Version<T>::Multithreaded_Version() 
 {
 }
 

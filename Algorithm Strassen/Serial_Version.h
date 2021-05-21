@@ -7,6 +7,11 @@
 #include <mutex>
 #include <chrono>
 
+/*!
+ * \brief Serial version
+ * Serial version of algorithm
+ */
+
 /*!Template class for the serial version of the algorithm*/
 template<typename T>
 class Serial_Version : public Algorithm_Strassen<T>
@@ -16,9 +21,9 @@ public:
     void strassenR(Matrix<T>& A, Matrix<T>& B, Matrix<T>& C, int n) override;
 	
 	/*!A constructor that accepts two parameters*/
-	Serial_Version<T>(Matrix<T>& A, Matrix<T>& B, Matrix<T>& C, int n);
+	Serial_Version<T>(Matrix<T>& A, Matrix<T>& B, Matrix<T>& C) ;
 	/*!A constructor that does not accept input parameters*/
-    Serial_Version<T>();
+    Serial_Version<T>() ;
 	/*!Method for adding matrices*/
     void sum(Matrix<T>& A, Matrix<T>& B, Matrix<T>& C, int n) override;
 	/*!Method for subtracting matrices*/
@@ -26,22 +31,6 @@ public:
     
 };
 
-/*!Class to find exceptions*/
-class Serial_VersionException
-{
-private:
-	/*!Message of exeptions*/
-	std::string m_error;
-
-public:
-	/*!Constructor that accepts one parameters*/
-	Serial_VersionException(std::string error)
-		: m_error(error)
-	{
-	}
-	/*!Method for outputting the message of exeption*/
-	const char* getError() { return m_error.c_str(); }
-};
 
 #include "Serial_Version.cpp"
 #endif
